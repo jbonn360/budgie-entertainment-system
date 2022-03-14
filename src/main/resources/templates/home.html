@@ -3,64 +3,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="img/favicon.ico" />
 <title>Home</title>
 
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="/js/src/home.js"></script>
-
+<script type="text/javascript" src="js/src/home.js"></script>
 
 <!-- CSS -->
-<link rel="stylesheet" href="/css/style.css" />
-
+<link rel="stylesheet" href="css/style.css" />
 
 </head>
 <body>
-	<th:block
-		th:if="${@environment.getProperty('app.feedback.allow-submissions') eq 'true'}">
-		<div id="feedbackBox" th:insert="fragments/feedbackBox.html"></div>
-	</th:block>
-	<div id='mainContainer' class='middle'>
+	<div id='mainContainer'>
 		<header>
-			<a href="/" class="logo">eBookMaker.io</a>
-			<div id="headerMid"></div>
-			<th:block
-				th:if="${@environment.getProperty('app.donate.show-button') eq 'true'}">
-				<div id="headerRight" th:insert="fragments/donateButton.html"></div>
-			</th:block>
-		</header>
-		<div>
-			<h5>Many Thanks to the Artists Below 🙏</h5>
-			<div class="wordyDiv">
-				<dl>
-					<dt>File Upload Icon</dt>
-					<dd>
-						↳ Made by <a
-							href="https://www.flaticon.com/free-icon/file_1092220?term=file%20upload&page=2&position=16"
-							title="Kiranshastry">Kiranshastry</a> from <a
-							href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-					</dd>
-
-					<dt>Workbench Zoom Button Icons</dt>
-					<dd>
-						↳ Made by <a href="https://www.freepik.com" title="Freepik">Freepik</a>
-						from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-					</dd>
-
-					<dt>Home Page Illustrations</dt>
-					<dd>
-						↳ Made by <a href="https://undraw.co">undraw.co</a>
-					</dd>
-				</dl>
-				<br /> <span class='note'>If I used any of your illustrations
-					and didn't mention it above, kindly let me know via the feedback
-					box below.</span>
+			<div class="title">
+				<img class="titleBudgie left" src="img/budgie.png" /> <span>Budgie
+					HIFI System</span> <img class="titleBudgie" src="img/budgie.png" />
 			</div>
-		</div>
-		<footer>
-			<span>© 2021 - eBookMaker.io | <a href="/">Home</a></span>
-		</footer>
+		</header>
+		<main>
+			<div class="controls">
+				<input type="range" min="1" max="100" value="61" class="slider" id="myRange"/>
+				<button id="btnToggleStart" onclick="toggleMasterSwitch(this.id)">START</button>
+			</div>
+		</main>
 	</div>
 </body>
 </html>

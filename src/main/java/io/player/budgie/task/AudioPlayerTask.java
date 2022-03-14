@@ -3,8 +3,8 @@ package io.player.budgie.task;
 import java.util.Random;
 import java.util.TimerTask;
 
-import io.player.budgie.audio.AudioPlayer;
-import io.player.budgie.audio.VLCPlayer;
+import io.player.budgie.audioplayer.AudioPlayer;
+import io.player.budgie.audioplayer.VLCPlayer;
 
 public class AudioPlayerTask extends TimerTask{
 	private AudioPlayer audioPlayer;

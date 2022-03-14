@@ -1,4 +1,4 @@
-package io.player.budgie.audio;
+package io.player.budgie.audioplayer;
 
 public interface AudioPlayer {
 	public void playAudio();
