@@ -20,12 +20,7 @@ public class AudioPlayerTask extends TimerTask {
 
 	@Override
 	public void run() {
-		//boolean roll = random.nextBoolean();
-		boolean roll = true;
-
-		if (roll) {
-			System.out.println("Playing audio at " + audioPlayer.getVolume() * 100 +"% volume");
-			audioPlayer.playAudio();
-		}
+		boolean roll = random.nextBoolean();
+		if (roll) audioPlayer.playAudio();
 	}
 }

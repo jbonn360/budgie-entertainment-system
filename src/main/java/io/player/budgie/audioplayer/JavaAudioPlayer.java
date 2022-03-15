@@ -16,48 +16,46 @@ import javafx.scene.media.MediaPlayer;
 
 @Component
 public class JavaAudioPlayer implements AudioPlayer {
-	private static Logger LOG = LoggerFactory.getLogger(JavaAudioPlayer.class);
-	
-	private double volume;
+	private final static Logger LOG = LoggerFactory.getLogger(JavaAudioPlayer.class);
 
-	@Value("classpath:static/audio/budgie.mp3")
-	private Resource audioFileResource;
-	
-	public JavaAudioPlayer(@Value("${app.player.starting-volume}") double startingVolume) {
-		new JFXPanel();
-		this.volume = startingVolume;
-	}
+	private final MediaPlayer mediaPlayer;
 
-	@Override
-	public void playAudio() {
+	public JavaAudioPlayer(@Value("${app.player.starting-volume}") final double startingVolume,
+			@Value("classpath:static/audio/budgie.mp3") final Resource audioFileResource) {		
 		Optional<URI> audioFileURI = Optional.empty();
 		try {
 			audioFileURI = Optional.ofNullable(audioFileResource.getURI());
 		} catch (IOException e) {
 			LOG.error(String.format("Audio file not found '%s'", audioFileURI), e);
 		}
+
+		// needed for the media player to be able to play audio
+		new JFXPanel(); 
 		
-		// this is the equivalent of the 3 commented lines below
-		audioFileURI.map(URI::toString).map(Media::new).map(MediaPlayer::new).ifPresent((player) -> setPlayerVolumeAndPlay(player));
+		this.mediaPlayer = audioFileURI.map(URI::toString).map(Media::new).map(MediaPlayer::new).orElseThrow();
+		this.mediaPlayer.setVolume(startingVolume);
+	}
+
+	@Override
+	public void playAudio() {
+		//System.out.println("Playing audio at " + getVolume() * 100 + "% volume");
 		
-//		final Media media = new Media(audioFileURI.get().toString());
-//		final MediaPlayer mediaPlayer = new MediaPlayer(media);		
-//		mediaPlayer.setVolume(volume);
-//		mediaPlayer.play();
+		mediaPlayer.stop();
+		mediaPlayer.play();
+	}
+	
+	@Override
+	public void stopAudio() {
+		mediaPlayer.stop();
 	}
 
 	@Override
 	public double getVolume() {
-		return volume;
+		return mediaPlayer.getVolume();
 	}
 
 	@Override
 	public void setVolume(double volume) {
-		this.volume = volume;
-	}
-	
-	private void setPlayerVolumeAndPlay(final MediaPlayer player) {
-		player.setVolume(volume);
-		player.play();
+		mediaPlayer.setVolume(volume);
 	}
 }

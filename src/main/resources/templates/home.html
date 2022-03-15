@@ -8,6 +8,9 @@
 
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script th:inline="javascript">
+	var audioPlayerState = [[${audioPlayerState}]];
+</script>
 <script type="text/javascript" src="js/src/home.js"></script>
 
 <!-- CSS -->
@@ -26,8 +29,9 @@
 			<div class="controls">
 				<input id="rngVolume" type="range" min="1" max="100"
 					th:value="${audioPlayerVolume * 100}" class="slider"
-					onchange="postVolumeChange(this.value)"></th:input>
-					
+					onchange="postVolumeChange(this.value)"
+					ontouchstart="disablePageDrag()">
+				</th:input>
 				<button id="btnToggleAudioPlayer"
 					onclick="toggleMasterSwitch(this.id)">START</button>
 			</div>

@@ -9,6 +9,7 @@ html, body{
 	grid-template-columns: auto;
 	grid-template-rows: 4rem auto;
 	height: 100%;
+	grid-gap: 4rem;
 }
 
 header {

@@ -36,9 +36,9 @@ public class HomeController {
 		audioPlayerService.switchStateTo(state);
 	}
 	
-	@PostMapping("/changeVolume")
+	@PostMapping("/setVolume")
 	@ResponseStatus(HttpStatus.OK)
-	public void changeVolume(double volume) {
+	public void setVolume(double volume) {
 		audioPlayerService.setPlayerVolume(volume);
 	}
 }

@@ -1,15 +1,34 @@
+$(function() {
+	initMasterSwitchButton('#btnToggleAudioPlayer', audioPlayerState);
+});
+
+function initMasterSwitchButton(buttonId, state){
+	var button = $(buttonId);
+
+	if(state)		
+		setMasterButtonToStopMode(button);
+}
+
 function toggleMasterSwitch(buttonId) {
 	var button = $('#' + buttonId);
 	
-	if(button.text() === "START"){
+	if(button.text() === 'START'){
 		postMasterSwitchState(true);
-		button.css('background-color', 'red');
-		button.text('STOP');
+		setMasterButtonToStopMode(button);
 	} else {
 		postMasterSwitchState(false);
-		button.removeAttr('style');
-		button.text('START');
+		setMasterButtonToStartMode(button);
 	}
+}
+
+function setMasterButtonToStopMode(button) {
+	button.css('background-color', 'red');
+	button.text('STOP');
+}
+
+function setMasterButtonToStartMode(button) {
+	button.removeAttr('style');
+	button.text('START');
 }
 
 function postMasterSwitchState(state){
@@ -17,11 +36,11 @@ function postMasterSwitchState(state){
 }
 
 function postVolumeChange(value){
-	console.log(value);
+	var newVolume = value / 100;	
 	
-	var newVolume = value / 100;
-	
-	console.log(newVolume);
-	
-	$.post('changeVolume', { 'volume' : newVolume });
+	$.post('setVolume', { 'volume' : newVolume });
+}
+
+function disablePageDrag(){
+	$('html').attr('ontouchstart', '');
 }

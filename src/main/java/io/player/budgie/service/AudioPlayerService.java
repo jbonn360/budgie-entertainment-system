@@ -19,15 +19,18 @@ public class AudioPlayerService {
 	private boolean isPlayerTaskScheduled;
 
 	public AudioPlayerService(@Autowired AudioPlayer audioPlayer,
-			@Value("${app.player.timer.task-period-mins}") int timerPeriod) {		
+			@Value("${app.player.timer.task-period-mins}") int timerPeriod) {
 		this.audioPlayer = audioPlayer;
-		this.timerPeriodMillis = 1000 * 60 * timerPeriod;		
+		this.timerPeriodMillis = 1000 * 60 * timerPeriod;
 		this.isPlayerTaskScheduled = false;
 	}
 
 	public void registerAudioPlayerTask() {
 		timer = new Timer();
-		timer.scheduleAtFixedRate(new AudioPlayerTask(audioPlayer), 0, timerPeriodMillis);
+		timer.scheduleAtFixedRate(new AudioPlayerTask(audioPlayer), timerPeriodMillis, timerPeriodMillis);
+
+		// always play track instantly first time round as a form of user feedback
+		audioPlayer.playAudio();
 
 		this.isPlayerTaskScheduled = true;
 	}
@@ -41,8 +44,11 @@ public class AudioPlayerService {
 	public void switchStateTo(boolean state) {
 		if (state && !isPlayerTaskScheduled)
 			registerAudioPlayerTask();
-		else if (!state && isPlayerTaskScheduled)
+		else if (!state && isPlayerTaskScheduled) {
+			audioPlayer.stopAudio();
 			deregisterAudioPlayerTask();
+		}
+			
 	}
 
 	public double getPlayerVolume() {
