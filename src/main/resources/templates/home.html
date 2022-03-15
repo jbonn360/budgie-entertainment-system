@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+<!-- <link rel="icon" type="image/x-icon" href="img/favicon.ico" /> -->
 <title>Home</title>
 
 <!-- JS -->
@@ -24,8 +24,12 @@
 		</header>
 		<main>
 			<div class="controls">
-				<input type="range" min="1" max="100" value="61" class="slider" id="myRange"/>
-				<button id="btnToggleStart" onclick="toggleMasterSwitch(this.id)">START</button>
+				<input id="rngVolume" type="range" min="1" max="100"
+					th:value="${audioPlayerVolume * 100}" class="slider"
+					onchange="postVolumeChange(this.value)"></th:input>
+					
+				<button id="btnToggleAudioPlayer"
+					onclick="toggleMasterSwitch(this.id)">START</button>
 			</div>
 		</main>
 	</div>
