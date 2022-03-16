@@ -15,6 +15,21 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>in-project</id>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>file://${project.basedir}\lib</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -37,7 +52,33 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Open JavaFX ARM32 JARs from: https://gluonhq.com/products/javafx/ -->
 		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base-arm32</artifactId>
+			<version>19-ea+3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics-arm32</artifactId>
+			<version>19-ea+3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media-arm32</artifactId>
+			<version>19-ea+3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-swing-arm32</artifactId>
+			<version>19-ea+3</version>
+		</dependency>
+
+		<!-- These are the 64-bit version of Open JavaFX; hence they're not compatible with the Raspberry PI -->
+		<!--<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
 			<version>19-ea+3</version>
@@ -47,9 +88,7 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-swing</artifactId>
 			<version>19-ea+3</version>
-		</dependency>
-
-
+		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -58,6 +97,22 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
