@@ -53,15 +53,9 @@
 		</dependency>
 
 		<!-- Open JavaFX ARM32 JARs from: https://gluonhq.com/products/javafx/ -->
-		<!--<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-media-arm32</artifactId>
-			<version>19-ea+3</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-swing-arm32</artifactId>
+			<artifactId>javafx-base-arm32</artifactId>
 			<version>19-ea+3</version>
 		</dependency>
 
@@ -73,12 +67,18 @@
 
 		<dependency>
 			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base-arm32</artifactId>
+			<artifactId>javafx-media-arm32</artifactId>
 			<version>19-ea+3</version>
-		</dependency> -->
-		
-		<!-- These are the 64-bit version of Open JavaFX; hence they're not compatible with the Raspberry PI -->
+		</dependency>
+
 		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-swing-arm32</artifactId>
+			<version>19-ea+3</version>
+		</dependency>
+
+		<!-- These are the 64-bit version of Open JavaFX; hence they're not compatible with the Raspberry PI -->
+		<!--<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
 			<version>19-ea+3</version>
@@ -88,11 +88,11 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-swing</artifactId>
 			<version>19-ea+3</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 
 	<build>
-	 	<finalName>budgie-hifi-system</finalName>
+		<finalName>budgie-hifi-system</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
