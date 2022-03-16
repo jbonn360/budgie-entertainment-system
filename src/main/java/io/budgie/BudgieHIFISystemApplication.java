@@ -1,13 +1,13 @@
-package io.player.budgie;
+package io.budgie;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BudgieEntertainmentSystemApplication {
+public class BudgieHIFISystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BudgieEntertainmentSystemApplication.class, args);
+		SpringApplication.run(BudgieHIFISystemApplication.class, args);
 	}
 
 }

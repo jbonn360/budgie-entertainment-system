@@ -7,11 +7,11 @@
 		<version>2.6.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.player</groupId>
-	<artifactId>budgie-entertainment-system</artifactId>
+	<groupId>io.budgie</groupId>
+	<artifactId>budgie-hifi-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>budgie-entertainment-system</name>
-	<description>Budgie Entertainment System</description>
+	<description>Budgie HIFI System</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

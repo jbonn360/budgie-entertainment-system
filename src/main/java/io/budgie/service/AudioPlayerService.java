@@ -1,4 +1,4 @@
-package io.player.budgie.service;
+package io.budgie.service;
 
 import java.util.Timer;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import io.player.budgie.audioplayer.AudioPlayer;
-import io.player.budgie.task.AudioPlayerTask;
+import io.budgie.audioplayer.AudioPlayer;
+import io.budgie.task.AudioPlayerTask;
 
 @Service
 public class AudioPlayerService {

@@ -1,4 +1,4 @@
-package io.player.budgie.audioplayer;
+package io.budgie.audioplayer;
 
 import java.io.IOException;
 import java.net.URI;
